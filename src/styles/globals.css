@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.description {
+  margin-top: 3%;
+}
+
+.mb-3 {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.calculation {
+  border: 2px solid green;
+  padding: 2.5%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 2.5%;
+}
+
+.connectedWallet {
+  margin-left: 40%;
+  margin-right: 40%;
+  margin-bottom: 3%;
+}
+
+#connectWallet {
+  margin-left: 40%;
+  margin-right: 40%;
+  margin-bottom: 3%;
+}
+
+/* sign in with eth */
+
+h1,
+h2 {
+  margin: 0px;
+}
+
+h2 span {
+  font-size: 12px;
+}
+
+body {
+  padding: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+.SIWEbutton {
+  background: hsl(0, 0%, 60%);
+  border-radius: 12px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+}
+
+.SIWEbutton span {
+  display: block;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  background: hsl(153, 33%, 95%);
+  color: black;
+  transform: translateY(-4px);
+  will-change: transform;
+  transition: transform 250ms;
+}
+
+.SIWEbutton:hover span {
+  transform: translateY(-8px);
+}
+
+.SIWEbutton:active span {
+  transform: translateY(-2px);
+}
+
+.SIWEbutton:disabled span {
+  transform: translateY(-2px);
+  opacity: .7;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 1em;
+}
