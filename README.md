@@ -3,7 +3,15 @@
 ### Deployed Contract Addresses 
 
 
+eth testnet core - 0x706abc4E45D419950511e474C7B9Ed348A4a716c
 
+mumbai - 0x0CBE91CF822c73C2315FB05100C2F714765d5c20
+
+TokenBridge
+
+0x0290FB167208Af455bB137780163b7B7a9a10C16
+
+mumbai - 0x377D55a7928c046E18eEbb61977e714d2a76472a
 ### Technologies used 
 
 
