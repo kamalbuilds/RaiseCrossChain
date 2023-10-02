@@ -16,6 +16,7 @@
     "@mantine/dates": "^5.10.3",
     "@mantine/hooks": "^5.10.3",
     "@mantine/notifications": "^5.10.3",
+    "@siddomains/sidjs": "^0.1.29",
     "@spruceid/rebase-client": "^0.16.2",
     "@spruceid/ssx": "^2.0.0",
     "@spruceid/ssx-server": "^2.0.0",

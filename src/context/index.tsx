@@ -7,7 +7,7 @@ import {
 } from "@thirdweb-dev/react";
 import { SmartContract } from "@thirdweb-dev/sdk";
 import { BaseContract, ethers } from "ethers";
-import React, { createContext, useContext , useState , useEffect} from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 import { CreateCampaignValidationType } from "../pages/CreateCampaign";
 import { useChainId } from "@thirdweb-dev/react";
 
@@ -22,9 +22,10 @@ interface StateContextType {
     avatarUrl: string | null;
   };
   lens?: string | null; // Add lens
-  ssxProvider ? : any;
-  setSsxProvider ?: any;
-  setEns ?: any;
+  ssxProvider?: any;
+  setSsxProvider?: any;
+  setEns?: any;
+  chainid: number
 }
 
 
@@ -47,25 +48,25 @@ export const StateProvider = ({ children }: StateProviderProps) => {
   const [ssxProvider, setSsxProvider] = useState<SSX | null>(null);
 
   useEffect(() => {
-      let currentContractAddress;
-      switch(chainid) {
-          case 421613:
-              currentContractAddress = "0x18eEb61fB8F03be2f9B91Db2683db4d473ba5585"; // arb
-              break;
-          case 43113:
-              currentContractAddress = "0x32AdE66Dcd63bC95A3215C53BF712423550593FB"; // avalanche
-              break;
-          default:
-              console.log(chainid, "i m here");
-              currentContractAddress = "0x32AdE66Dcd63bC95A3215C53BF712423550593FB";
-      }
-      setContractAddress(currentContractAddress);
+    let currentContractAddress;
+    switch (chainid) {
+      case 421613:
+        currentContractAddress = "0x18eEb61fB8F03be2f9B91Db2683db4d473ba5585"; // arb
+        break;
+      case 43113:
+        currentContractAddress = "0x32AdE66Dcd63bC95A3215C53BF712423550593FB"; // avalanche
+        break;
+      default:
+        console.log(chainid, "i m here");
+        currentContractAddress = "0x32AdE66Dcd63bC95A3215C53BF712423550593FB";
+    }
+    setContractAddress(currentContractAddress);
   }, [chainid]);
 
-  console.log(contractAddress,ens,"address and ens kamal");
+  console.log(contractAddress, ens, "address and ens kamal");
 
   const { contract } = useContract(contractAddress);
-  console.log(contract,"c");
+  console.log(contract, "c");
   const {
     mutateAsync: createCampaign,
     isLoading,
@@ -75,7 +76,7 @@ export const StateProvider = ({ children }: StateProviderProps) => {
   const address = useAddress();
 
   const handleCreateCampaign = async (values: CreateCampaignValidationType) => {
-    console.log(values,"v")
+    console.log(values, "v")
     try {
       const data = await createCampaign(
         address,
@@ -116,7 +117,8 @@ export const StateProvider = ({ children }: StateProviderProps) => {
         setLens,
         lens,
         ssxProvider,
-        setSsxProvider
+        setSsxProvider,
+        chainid
       }}
     >
       {children}
