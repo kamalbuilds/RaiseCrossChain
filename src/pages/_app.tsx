@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <LivepeerConfig client={livepeerClient}>
         <ThirdwebProvider
-          activeChain={AvalancheFuji}
+          activeChain={ArbitrumGoerli}
           clientId="1907611a66678e4abbe5ec7d99e5c160"
           supportedChains={[ArbitrumGoerli, AvalancheFuji, Ethereum, MantleTestnet, Polygon]}
           supportedWallets={[
