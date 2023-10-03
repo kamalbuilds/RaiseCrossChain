@@ -43,12 +43,6 @@ export default function App({ Component, pageProps }: AppProps) {
             metamaskWallet(),
             coinbaseWallet(),
             safeWallet(),
-            smartWallet({
-              factoryAddress: "0x34Afb4Cb3EC4A273968bBa7267A06ff1A37Cd510", //  deployed account factory address on Arbgorelli
-              gasless: true,
-              personalWallets: [metamaskWallet(), coinbaseWallet(), localWallet()]
-            }),
-
           ]}
         >
           <MantineProvider
