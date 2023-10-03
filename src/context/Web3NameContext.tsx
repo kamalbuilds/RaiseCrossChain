@@ -36,6 +36,9 @@ export const Web3NameContextProvider = ({ children }: { children: JSX.Element })
             case 42161:
                 rpc = 'https://arb-mainnet.g.alchemy.com/v2/UBBOe4o5xBdu3ZSm73Ty2dOmDIQh696X'
                 break;
+            case 421613:
+                rpc = 'https://arb-goerli.g.alchemy.com/v2/cGEmNrGhBMlGn1nMpR17_EX46SXdhGkQ'
+                break;
             case 97:
                 rpc = 'https://data-seed-prebsc-1-s1.binance.org:8545/'
                 break;
@@ -64,11 +67,15 @@ export const Web3NameContextProvider = ({ children }: { children: JSX.Element })
 
     const resolveWalletAddress = async (chainid: number, address: string) => {
         const provider = getProvider(chainid);
-        console.log("Provider", provider, chainid);
-        sid = new SID({ provider, sidAddress: SIDfunctions.getSidAddress(chainid) })
 
+        sid = new SID({ provider, sidAddress: SIDfunctions.getSidAddress(chainid) })
+        console.log("Provider", provider, chainid, sid);
         const name = await sid.getName(address);
-        setUserName(name.name);
+        if (name.name) {
+            setUserName(name.name);
+        } else {
+            setUserName(address);
+        }
         console.log("Name", name);
         console.log("name: ", name, address);
 
