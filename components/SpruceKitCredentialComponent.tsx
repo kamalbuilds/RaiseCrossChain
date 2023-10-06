@@ -14,7 +14,7 @@ const SpruceKitCredentialComponent = ({ ssx }: ICredentialComponent) => {
   const handleGetContent = async (content: string) => {
     setLoading(true);
     try {
-      const contentName = content.replace('my-app/', '')
+      const contentName = content.replace('raisexchain/', '')
       const { data } = await ssx.credentials.get(contentName);
       setViewingContent(`${content}:\n${JSON.stringify(toCredentialEntry(data), null, 2)}`);
     } catch (e) {

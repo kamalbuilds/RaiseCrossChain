@@ -1,5 +1,9 @@
 # RaiseCrossChain - The Best Cross chain Crowdfunding Application with DID and ENS 🚀 
 
+## Pitch Deck 
+
+https://docs.google.com/presentation/d/1j9x5EGvNGSfSuUdSVcBlmLe2DUBbI-8gpKXpyfoi8P8/edit?usp=sharing
+
 ### Deployed Contract Addresses 
 
 Wormhole - https://wormholescan.io/#/tx/154cccee7e9c433385f6d89d3f1935ebc92789682388a46cac8f5a69fd5f0cd5?network=TESTNET
@@ -14,6 +18,7 @@ Arbitrium - https://goerli-rollup-explorer.arbitrum.io/address/0xcb28933eED27d02
 
 ### Video Demonstration
 
+https://github.com/kamalbuilds/RaiseCrossChain/assets/95926324/240c7daa-56c4-46f2-9354-3d43a474af84
 
 ### Technologies used 
 

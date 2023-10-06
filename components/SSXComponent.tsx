@@ -24,14 +24,14 @@ const SSXComponent = () => {
     const ssx = new SSX({
       providers: {
         server: {
-          host: "https://xfund-iota.vercel.app/api"
+          host: "https://raisexchain.vercel.app/api"
         }
       },
       resolveEns: checkens,
       resolveLens: checklens,
       modules: {
         storage: {
-          prefix: 'my-app',
+          prefix: 'raisexchain',
           hosts: ['https://kepler.spruceid.xyz'],
           autoCreateNewOrbit: true
         },

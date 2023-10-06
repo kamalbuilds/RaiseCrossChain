@@ -34,7 +34,7 @@ const KeplerStorageComponent = ({ ssx }: IKeplerStorageComponent) => {
     const formatedKey = 'content/' + key.replace(/\ /g, '_');
     setLoading(true);
     await ssx.storage.put(formatedKey, value);
-    setContentList((prevList) => [...prevList, `my-app/${formatedKey}`]);
+    setContentList((prevList) => [...prevList, `raisexchain/${formatedKey}`]);
     setKey('');
     setValue('');
     setLoading(false);
@@ -42,7 +42,7 @@ const KeplerStorageComponent = ({ ssx }: IKeplerStorageComponent) => {
 
   const handleGetContent = async (content: string) => {
     setLoading(true);
-    const contentName = content.replace('my-app/', '')
+    const contentName = content.replace('raisexchain/', '')
     const { data } = await ssx.storage.get(contentName);
     setViewingContent(`${content}:\n${data}`);
     setLoading(false);
@@ -50,7 +50,7 @@ const KeplerStorageComponent = ({ ssx }: IKeplerStorageComponent) => {
 
   const handleDeleteContent = async (content: string) => {
     setLoading(true);
-    const contentName = content.replace('my-app/', '')
+    const contentName = content.replace('raisexchain/', '')
     await ssx.storage.delete(contentName);
     setContentList((prevList) => prevList.filter((c) => c !== content));
     setLoading(false);

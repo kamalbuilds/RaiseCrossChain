@@ -109,7 +109,7 @@ const RebaseCredentialComponent = ({ ssx }: IRebaseCredentialComponent) => {
       const sig = (await signer?.signMessage(stmt)) ?? '';
       const jwt_str = await witness(credentialType, content, sig);
       await ssx.storage.put(fileName, jwt_str);
-      setCredentialList((prevList) => [...prevList, `my-app/${fileName}`]);
+      setCredentialList((prevList) => [...prevList, `raisexchain/${fileName}`]);
     } catch (e) {
       console.error(e);
     }
@@ -119,7 +119,7 @@ const RebaseCredentialComponent = ({ ssx }: IRebaseCredentialComponent) => {
   const handleGetContent = async (content: string) => {
     setLoading(true);
     try {
-      const contentName = content.replace('my-app/', '')
+      const contentName = content.replace('raisexchain/', '')
       const { data } = await ssx.storage.get(contentName);
       setViewingContent(`${content}:\n${JSON.stringify(toCredentialEntry(data), null, 2)}`);
     } catch (e) {
@@ -130,7 +130,7 @@ const RebaseCredentialComponent = ({ ssx }: IRebaseCredentialComponent) => {
 
   const handleDeleteContent = async (content: string) => {
     setLoading(true);
-    const contentName = content.replace('my-app/', '')
+    const contentName = content.replace('raisexchain/', '')
     await ssx.storage.delete(contentName);
     setCredentialList((prevList) => prevList.filter((c) => c !== content));
     setLoading(false);

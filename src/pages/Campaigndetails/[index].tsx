@@ -36,7 +36,11 @@ const CampaignDetails = () => {
   const { index } = router.query;
   const address = useAddress();
   const { ssxProvider, chainid } = useAppState();
-
+  const [formData, setFormData] = useState({
+    amount: 0, // Initial value for amount
+    tokenAddress: "", // Initial value for token address
+    chainno: 0,
+  });
   console.log(ssxProvider, "ssxpr");
   const ssxaddress = ssxProvider?.address() || '';
   console.log(index);
@@ -46,7 +50,6 @@ const CampaignDetails = () => {
   // const { data, isLoading } = useContractRead(contract, "getCampaign", (index));
 
   const { data, isLoading } = useContractRead(contract, "getCampaign", [index]);
-  console.log(data);
 
   const { mutateAsync: donateToCampaign, isLoading: donationloading } = useContractWrite(contract, "donateToCampaign");
 
@@ -69,6 +72,40 @@ const CampaignDetails = () => {
     parseFloat(typedState.amountCollected)
   );
 
+  // Function to handle form input changes
+  const handleInputChange = (e  : any) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e : any) => {
+    e.preventDefault();
+    console.log("i m called 1")
+    try {
+      console.log("here 2")
+      // Call the 'call' function with the form data
+      await call(formData.amount, formData.tokenAddress , formData.chainno);
+
+      // Show a success notification
+      showNotification({
+        title: "Successfully called",
+        message: "The 'call' function was invoked successfully",
+        color: "green",
+      });
+    } catch (error) {
+      // Handle any errors and show an error notification
+      console.error("Failed to call the function", error);
+      showNotification({
+        title: "Something went wrong",
+        message: "Failed to call the function",
+        color: "red",
+      });
+    }
+  };
+
   // const { contract : erc20 } = useContract("0x326C977E6efc84E512bB9C30f76E30c160eD06FB");
   // const { mutateAsync: approve, isLoading : load } = useContractWrite(erc20, "approve")
 
@@ -81,20 +118,19 @@ const CampaignDetails = () => {
   //   }
   // }
 
-  const call = async () => {
+  const call = async (amount : number , tokenAddress : string , chainno : number) => {
     try {
       // const data = await donateTokensCrossChainToCampaign({ args: [targetChain, targetContract, recipient, amount, token, _id] });
-
-      const valueInWei = "18000000000000000";
+      const valueInWei = "1000000000000000000";
       
       const data = await donateTokensCrossChainToCampaign(
         {
           args: [
-            6,
+            chainno, // 6 for fuji
             "0x2c852e740B62308c46DD29B982FBb650D063Bd07",
             "0xCF8D2Da12A032b3f3EaDC686AB18551D8fD6c132",
-            "1000000000000000000",
-            "0x326C977E6efc84E512bB9C30f76E30c160eD06FB",
+            amount,
+            tokenAddress, // tokenAddress "0x326C977E6efc84E512bB9C30f76E30c160eD06FB",
             "0x72f6c77a48d3feeba1f23e4cda0eeb11935ac9e76e7fb403ed52339dbc0483c0",
           ],
           overrides: {
@@ -104,7 +140,7 @@ const CampaignDetails = () => {
         },
       );
   
-      console.info("contract call success", data);
+      console.log("contract call success", data);
     } catch (err) {
       console.error("contract call failure", err);
     }
@@ -252,7 +288,48 @@ const CampaignDetails = () => {
             )}
           </div>
                   {/* <button onClick={callerc20}> Approve</button> */}
-                  <button onClick={call}> Call</button>
+          <div className="my-6 bg-grey-400">
+          {/* Form for entering amount and token address */}
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="amount">Amount:</label>
+              <input
+                type="number"
+                id="amount"
+                name="amount"
+                value={formData.amount}
+                onChange={handleInputChange}
+                required
+                className="mx-4"
+              />
+            </div>
+            <div>
+              <label htmlFor="tokenAddress">Token Address:</label>
+              <input
+                type="text"
+                id="tokenAddress"
+                name="tokenAddress"
+                value={formData.tokenAddress}
+                onChange={handleInputChange}
+                required
+                className="mx-4"
+              />
+            </div>
+            <div>
+              <label htmlFor="tokenAddress">Chain Number:</label>
+              <input
+                type="text"
+                id="chainno"
+                name="chainno"
+                value={formData.chainno}
+                onChange={handleInputChange}
+                required
+                className="mx-4"
+              />
+            </div>
+            <button type="submit" className="bg-indigo-500 p-4 rounded-lg my-4">Send Funds XChain</button>
+          </form>
+        </div>
         </div>
       </div>
     </Container>

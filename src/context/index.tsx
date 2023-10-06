@@ -50,6 +50,9 @@ export const StateProvider = ({ children }: StateProviderProps) => {
   useEffect(() => {
     let currentContractAddress;
     switch (chainid) {
+      case 5: 
+        currentContractAddress = "0x3a59871DC0FEd5884374493D810a1439C2eca01F"; // goerli
+        break;
       case 421613:
         currentContractAddress = "0x18eEb61fB8F03be2f9B91Db2683db4d473ba5585"; // arb
         break;
