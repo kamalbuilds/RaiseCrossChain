@@ -8,16 +8,9 @@ Mumbai - https://mumbai.polygonscan.com/address/0xa75a8D0C1C244c8D1270432c90FAd4
 
 Avalanche - https://testnet.snowtrace.io/address/0x3a4e12933a3307f68782173abc3705df6f68378a
 
+Gorelli - https://goerli.etherscan.io/address/0x3a59871DC0FEd5884374493D810a1439C2eca01F
 
-eth testnet core - 0x706abc4E45D419950511e474C7B9Ed348A4a716c
-
-mumbai - 0x0CBE91CF822c73C2315FB05100C2F714765d5c20
-
-TokenBridge
-
-0x0290FB167208Af455bB137780163b7B7a9a10C16
-
-mumbai - 0x377D55a7928c046E18eEbb61977e714d2a76472a
+Arbitrium - https://goerli-rollup-explorer.arbitrum.io/address/0xcb28933eED27d02Ab86f66668150187807AA47e8
 
 ### Video Demonstration
 
