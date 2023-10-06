@@ -29,26 +29,3 @@ Arbitrium - https://goerli-rollup-explorer.arbitrum.io/address/0xcb28933eED27d02
 ## Union Protocol V2-SDK used for uncollaterised funding of the projects
 
 The `XFundBorrower` contract is a smart contract designed to integrate borrowing and repayment functionality for users on your xfund crowdfunding platform. The contract utilizes the Union Protocol SDK to facilitate the borrowing of funds using the native ETH token available on your platform. This contract provides a streamlined way for users to access additional funds for their crowdfunding endeavors and manage their borrowing activities.
-
-
-![image](https://github.com/kamalbuilds/xfund/assets/95926324/6d4cc154-089f-429d-b5c9-3dd35dd6bce0)
-
-![image](https://github.com/kamalbuilds/xfund/assets/95926324/06b33e26-5989-4c90-ade9-bdefddb8c89b)
-
-Create Campaign
-![image](https://github.com/kamalbuilds/xfund/assets/95926324/e350b9ae-44e9-4a43-8670-6216f935d59a)
-
-SIWE
-![image](https://github.com/kamalbuilds/xfund/assets/95926324/adf0177e-ef5b-4b0e-8847-ad0574c3118f)
-
-ENS supporters
-![image](https://github.com/kamalbuilds/xfund/assets/95926324/18fa54a0-72b6-4a96-9811-e80e2920b617)
-
-Store contribution Data in Kepler and Generate Verifiable Credentials( OnChain Attestation ) of your contributions
-![image](https://github.com/kamalbuilds/xfund/assets/95926324/e143a433-9d31-4dc6-b1a4-5e951d19e504)
-
-Get all your Issued Credentials at 1 place
-![image](https://github.com/kamalbuilds/xfund/assets/95926324/05dc787a-fa92-407f-9d8b-0db6b7344816)
-
-Borrow from union Protocol to fund projects and Repay Later ( Powered by Credit on Chain)
-![image](https://github.com/kamalbuilds/xfund/assets/95926324/eeffc542-9aab-45e7-9cdb-b5dc5b869afa)
