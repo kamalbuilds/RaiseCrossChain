@@ -5,7 +5,7 @@ import { createEmotionCache, MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import { StateProvider } from "../context";
 import { WagmiConfig } from "wagmi";
-import { MantleTestnet, ArbitrumGoerli, AvalancheFuji, Ethereum, Polygon } from "@thirdweb-dev/chains";
+import { MantleTestnet, ArbitrumGoerli, AvalancheFuji, Ethereum, Polygon , Mumbai } from "@thirdweb-dev/chains";
 import Navbar from "../../components/Navbar";
 import Header from "../../components/Header";
 import { metamaskWallet, safeWallet, localWallet, smartWallet, coinbaseWallet } from '@thirdweb-dev/react';
@@ -36,9 +36,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <LivepeerConfig client={livepeerClient}>
         <ThirdwebProvider
-          activeChain={ArbitrumGoerli}
+          activeChain={Mumbai}
           clientId="1907611a66678e4abbe5ec7d99e5c160"
-          supportedChains={[ArbitrumGoerli, AvalancheFuji, Ethereum, MantleTestnet, Polygon]}
+          supportedChains={[ArbitrumGoerli, AvalancheFuji, Ethereum, MantleTestnet, Polygon , Mumbai]}
           supportedWallets={[
             metamaskWallet(),
             coinbaseWallet(),

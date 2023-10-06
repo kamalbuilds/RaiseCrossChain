@@ -12,6 +12,7 @@ export interface DisplayCampaignsCardProps {
   amountCollected: string;
   owner: string;
   donators: string[];
+  tokenAddress: string;
 }
 
 const DisplayCampaigns: React.FC<DisplayCampaignsCardProps> = (item) => {

@@ -25,6 +25,7 @@ import RebaseCredentialComponent from "../../../components/RebaseCredentialCompo
 import { ChainId } from "@thirdweb-dev/react";
 import { Web3NameContext } from "@/context/Web3NameContext";
 import DonatorsList from "../../../components/DonatorsList";
+import { utils } from "ethers";
 export const CreateFundValidation = z.object({
   amount: z.number().min(0.0000001),
 });
@@ -49,6 +50,8 @@ const CampaignDetails = () => {
 
   const { mutateAsync: donateToCampaign, isLoading: donationloading } = useContractWrite(contract, "donateToCampaign");
 
+  const { mutateAsync: donateTokensCrossChainToCampaign, isLoading: donatexchainloading } = useContractWrite(contract, "donateTokensCrossChainToCampaign")
+
   if (isLoading) {
     return <Loader />;
   }
@@ -66,6 +69,46 @@ const CampaignDetails = () => {
     parseFloat(typedState.amountCollected)
   );
 
+  // const { contract : erc20 } = useContract("0x326C977E6efc84E512bB9C30f76E30c160eD06FB");
+  // const { mutateAsync: approve, isLoading : load } = useContractWrite(erc20, "approve")
+
+  // const callerc20 = async () => {
+  //   try {
+  //     const data = await approve({ args: ["0xa75a8D0C1C244c8D1270432c90FAd41602BB041E", 2] });
+  //     console.info("contract call successs", data);
+  //   } catch (err) {
+  //     console.error("contract call failure", err);
+  //   }
+  // }
+
+  const call = async () => {
+    try {
+      // const data = await donateTokensCrossChainToCampaign({ args: [targetChain, targetContract, recipient, amount, token, _id] });
+
+      const valueInWei = "18000000000000000";
+      
+      const data = await donateTokensCrossChainToCampaign(
+        {
+          args: [
+            6,
+            "0x2c852e740B62308c46DD29B982FBb650D063Bd07",
+            "0xCF8D2Da12A032b3f3EaDC686AB18551D8fD6c132",
+            "1000000000000000000",
+            "0x326C977E6efc84E512bB9C30f76E30c160eD06FB",
+            "0x72f6c77a48d3feeba1f23e4cda0eeb11935ac9e76e7fb403ed52339dbc0483c0",
+          ],
+          overrides: {
+            gasLimit: 1000000, // override default gas limit
+            value: utils.parseEther("0.018"), // send 0.1 native token with the contract call
+          },
+        },
+      );
+  
+      console.info("contract call success", data);
+    } catch (err) {
+      console.error("contract call failure", err);
+    }
+  }
 
 
   return (
@@ -129,6 +172,12 @@ const CampaignDetails = () => {
           </div>
           <div>
             <Title order={3} mt={15}>
+              ERC-20 Token Addresses for Donations
+            </Title>
+            <Text>{typedState.tokenAddress}</Text>
+          </div>
+          <div>
+            <Title order={3} mt={15}>
               Story{" "}
             </Title>
             <Text>{typedState.description}</Text>
@@ -161,19 +210,15 @@ const CampaignDetails = () => {
                   initialValues={{}}
                   onSubmit={async (values) => {
                     try {
-                      showNotification({
-                        title: "Do you have a zkbab token ?",
-                        message: "Ensure you are zk kyc verified before donating",
-                        color: "yellow",
-                      });
-
+                        
                       await donateToCampaign({
                         args: [
                           typedState.id,
-                          // {
-                          //   value: ethers.utils.parseEther(values.amount.toString()),
-                          // },
                         ],
+                        overrides: {
+                          gasLimit: 300000, // override default gas limit
+                          value: ethers.utils.parseEther(values.amount.toString()),
+                        },
                       });
 
                       showNotification({
@@ -206,7 +251,8 @@ const CampaignDetails = () => {
               </>
             )}
           </div>
-
+                  {/* <button onClick={callerc20}> Approve</button> */}
+                  <button onClick={call}> Call</button>
         </div>
       </div>
     </Container>

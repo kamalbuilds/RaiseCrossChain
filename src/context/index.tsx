@@ -56,6 +56,9 @@ export const StateProvider = ({ children }: StateProviderProps) => {
       case 43113:
         currentContractAddress = "0x32AdE66Dcd63bC95A3215C53BF712423550593FB"; // avalanche
         break;
+      case 80001:
+        currentContractAddress = "0xa75a8D0C1C244c8D1270432c90FAd41602BB041E"; // matic
+        break;
       default:
         console.log(chainid, "i m here");
         currentContractAddress = "0x32AdE66Dcd63bC95A3215C53BF712423550593FB";

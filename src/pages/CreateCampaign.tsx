@@ -72,6 +72,14 @@ export function CampaignForm<S extends z.ZodType<any, any>>(
                 required
               />
             </Grid.Col>
+            <Grid.Col md={12}>
+              <LabeledTextField
+                name="tokenaddress"
+                label="ERC-20 Token Address"
+                placeholder="Place ERC-20 Token Address to receive donations"
+                required
+              />
+            </Grid.Col>
           </Grid>
         </Paper>
       </Container>
@@ -86,6 +94,7 @@ export const CreateCampaignValidation = z.object({
   target: z.number().min(0.0000001),
   deadline: z.date(),
   image: z.string().url(),
+  tokenaddress: z.string(),
 });
 
 export type CreateCampaignValidationType = z.infer<
@@ -122,7 +131,7 @@ const CreateCampaign = () => {
 
           try {
             const targetValue = ethers.utils.parseUnits(values.target.toString(), 18); // Adjust the decimal precision as needed
-            await createCampaign({ args: [add, values.title, values.description, targetValue, values.deadline.getTime(), values.image] });
+            await createCampaign({ args: [add, values.title, values.description, targetValue, values.deadline.getTime(), values.image , values.tokenaddress] });
 
           } catch (error: any) {
             console.error(error);
